@@ -59,7 +59,7 @@ public class employeeController {
     }
 
     @DeleteMapping("/employee/{id}")
-    @Caching(evict = { @CacheEvict(value = "emp", key = "#result.id"), @CacheEvict(value = "employees", allEntries = true)})
+    @Caching(evict = { @CacheEvict(value = "emp", key = "#id"), @CacheEvict(value = "employees", allEntries = true)})
     public Optional<employee> deleteEmployee(@PathVariable long id){
 
         return  serv.deleteEmployee(id);
