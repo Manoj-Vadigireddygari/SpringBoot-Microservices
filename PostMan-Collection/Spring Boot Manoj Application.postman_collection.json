@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "165ed974-8feb-4c1c-b96d-6df086fdbd99",
+		"name": "Spring Boot Manoj Application",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "46864541",
+		"_collection_link": "https://manojkumarreddyvadigireddygari.postman.co/workspace/Manoj-Kumar-Reddy-Vadigireddyga~c32778fa-369f-40fd-8dbb-ef4653aeb6b2/collection/46864541-165ed974-8feb-4c1c-b96d-6df086fdbd99?action=share&source=collection_link&creator=46864541"
+	},
+	"item": [
+		{
+			"name": "Fetch Employee Records",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "admin123",
+						"username": "admin"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4xMjM=",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": "{{baseURL}}/api/employees"
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Employee By Id",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "admin123",
+						"username": "admin"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4xMjM=",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": "{{baseURL}}/api/employees"
+			},
+			"response": []
+		},
+		{
+			"name": "Employee -Save",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "admin123",
+						"username": "admin"
+					}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4xMjM=",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 2,\n    \"name\": \"Manoj\",\n    \"salary\": 30000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/api/employee/save"
+			},
+			"response": []
+		},
+		{
+			"name": "Employee -UPDATE",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "admin123",
+						"username": "admin"
+					}
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \n    \"name\": \"Reddy\",\n    \"salary\": 30000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{baseURL}}/employee/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Employee -DELETE",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "admin123",
+						"username": "admin"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": "{{baseURL}}/api/employee/4"
+			},
+			"response": []
+		},
+		{
+			"name": "Publish Message to Kafka Topic",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": {
+						"password": "admin123",
+						"username": "admin"
+					}
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic YWRtaW46YWRtaW4xMjM=",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{baseURL}}/api/publish?message=\"Hello Manoj\"",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"publish"
+					],
+					"query": [
+						{
+							"key": "message",
+							"value": "\"Hello Manoj\""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:8080",
+			"type": "default"
+		}
+	]
+}

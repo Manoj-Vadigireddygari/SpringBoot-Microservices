@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "32eb8322-60fc-48d7-9b94-698086e25895",
+		"name": "Microservice -3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "46864541",
+		"_collection_link": "https://manojkumarreddyvadigireddygari.postman.co/workspace/Manoj-Kumar-Reddy-Vadigireddyga~c32778fa-369f-40fd-8dbb-ef4653aeb6b2/collection/46864541-32eb8322-60fc-48d7-9b94-698086e25895?action=share&source=collection_link&creator=46864541"
+	},
+	"item": [
+		{
+			"name": "Employees - Rest Template",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseURL}}/api/microservice3/employees"
+			},
+			"response": []
+		},
+		{
+			"name": "Employees - RestClient",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseURL}}/api/microservice3/restclient/employees"
+			},
+			"response": []
+		},
+		{
+			"name": "Employees - FeignClient",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "{{baseURL}}/api/microservice3/feignclient/employees"
+			},
+			"response": []
+		}
+	]
+}
