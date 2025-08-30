@@ -3,6 +3,7 @@ package com.example.Microservice_3.Controller;
 import com.example.Microservice_3.Model.Employee;
 import com.example.Microservice_3.Service.ManojService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,9 @@ public class Microservice3Controller {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Value("${Manoj.service.url}")
+     String producturl;
+
     @GetMapping("/employees")
     public ResponseEntity<List<Employee>> getEmployee() {
 
@@ -30,7 +34,7 @@ public class Microservice3Controller {
 
         // Using List
         ResponseEntity<List<Employee>> response = restTemplate.exchange(
-                "http://localhost:8081/api/employees",
+                producturl+"/api/employees",
                 HttpMethod.GET,
                 entity,
                 new ParameterizedTypeReference<List<Employee>>() {}

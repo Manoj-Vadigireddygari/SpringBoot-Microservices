@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name = "MANOJ",url = "${feign.client.Manoj-Serice.url}",configuration = FeignConfig.class)
+@FeignClient(name = "MANOJ",configuration = FeignConfig.class)
 public interface ManojService {
 
     @GetMapping("/api/employees")
