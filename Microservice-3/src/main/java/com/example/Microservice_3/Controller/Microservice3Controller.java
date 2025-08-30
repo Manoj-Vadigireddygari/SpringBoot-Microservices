@@ -2,6 +2,10 @@ package com.example.Microservice_3.Controller;
 
 import com.example.Microservice_3.Model.Employee;
 import com.example.Microservice_3.Service.ManojService;
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -25,6 +29,8 @@ public class Microservice3Controller {
      String producturl;
 
     @GetMapping("/employees")
+    @RateLimiter(name = "employeeServiceLimiter", fallbackMethod = "rateLimitFallback")
+    @Bulkhead(name = "MANOJService",type = Bulkhead.Type.SEMAPHORE,fallbackMethod = "bulkheadFallBack")
     public ResponseEntity<List<Employee>> getEmployee() {
 
         HttpHeaders headers = new HttpHeaders();
@@ -47,6 +53,7 @@ public class Microservice3Controller {
     public RestClient restClient;
 
     @GetMapping("/restclient/employees")
+    @Bulkhead(name = "ManojService",type = Bulkhead.Type.THREADPOOL,fallbackMethod = "bulkheadFallBack")
     public ResponseEntity<List<Employee>> getRestClientEmployee() {
         List<Employee> response = restClient
                 .get()
@@ -63,11 +70,37 @@ public class Microservice3Controller {
     public ManojService manojService;
 
     @GetMapping("/feignclient/employees")
+    @Retry(name = "MANOJService",fallbackMethod = "retryFallBack")
+    @CircuitBreaker(name = "MANOJService",fallbackMethod = "circuitBreakerFallBack")
     public ResponseEntity<List<Employee>> getFeignClientEmployee() {
+        try {
+            ResponseEntity<List<Employee>> response = manojService.getAllEmployees();
+            return response;
+        }catch (Exception e){
 
-       ResponseEntity<List<Employee>> response = manojService.getAllEmployees();
+            System.out.println("Not able to invoke empployee API");
+            throw e;
+        }
 
-       return response;
 
+    }
+
+    public ResponseEntity<List<Employee>> rateLimitFallback(Throwable t){
+
+        return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).body(null);
+    }
+
+    public ResponseEntity<List<Employee>> bulkheadFallback(Throwable t){
+
+        return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).body(null);
+    }
+
+    public ResponseEntity<List<Employee>> retryFallBack(Throwable t){
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    }
+    public ResponseEntity<List<Employee>> circuitBreakerFallBack(Throwable t){
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
 }
