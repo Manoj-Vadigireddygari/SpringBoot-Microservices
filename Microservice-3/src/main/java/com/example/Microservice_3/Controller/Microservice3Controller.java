@@ -40,7 +40,7 @@ public class Microservice3Controller {
 
         // Using List
         ResponseEntity<List<Employee>> response = restTemplate.exchange(
-                producturl+"/api/employees",
+                producturl+"/api/manoj/employees",
                 HttpMethod.GET,
                 entity,
                 new ParameterizedTypeReference<List<Employee>>() {}
@@ -57,7 +57,7 @@ public class Microservice3Controller {
     public ResponseEntity<List<Employee>> getRestClientEmployee() {
         List<Employee> response = restClient
                 .get()
-                .uri("http://localhost:8081/api/employees")
+                .uri("http://localhost:8081/api/manoj/employees")
                 .headers(headers -> headers.setBasicAuth("admin", "admin123"))
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
@@ -90,7 +90,7 @@ public class Microservice3Controller {
         return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).body(null);
     }
 
-    public ResponseEntity<List<Employee>> bulkheadFallback(Throwable t){
+    public ResponseEntity<List<Employee>> bulkheadFallBack(Throwable t){
 
         return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).body(null);
     }

@@ -11,6 +11,6 @@ import java.util.List;
 @FeignClient(name = "MANOJ",configuration = FeignConfig.class)
 public interface ManojService {
 
-    @GetMapping("/api/employees")
+    @GetMapping("/api/manoj/employees")
     public ResponseEntity<List<Employee>> getAllEmployees();
 }
