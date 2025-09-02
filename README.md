@@ -21,8 +21,10 @@ SpringBoot-Microservices/
 
 ##  Tech Stack
 
+- **Java 17+**  - Java
 - **Spring Boot** – microservices framework  
-- **Spring Cloud Gateway** – centralized API routing  
+- **Spring Cloud Gateway** – centralized API routing , Load Balancing
+- **Springboot Actuator** - Exposes endpoints for Health checks & Application Performance
 - **Eureka Server** – service registry & discovery  
 - **Resilience4j** – fault-tolerance mechanisms:
   - Circuit Breaker  
