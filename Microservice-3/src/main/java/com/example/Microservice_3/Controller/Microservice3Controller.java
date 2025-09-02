@@ -85,22 +85,22 @@ public class Microservice3Controller {
 
     }
 
-    public ResponseEntity<List<Employee>> rateLimitFallback(Throwable t){
+    public ResponseEntity<?> rateLimitFallback(Throwable t){
 
-        return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).body(null);
+        return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).body(t.getMessage());
     }
 
-    public ResponseEntity<List<Employee>> bulkheadFallBack(Throwable t){
+    public ResponseEntity<?> bulkheadFallBack(Throwable t){
 
-        return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).body(null);
+        return ResponseEntity.status(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED).body(t.getMessage());
     }
 
-    public ResponseEntity<List<Employee>> retryFallBack(Throwable t){
+    public ResponseEntity<?> retryFallBack(Throwable t){
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(t.getMessage());
     }
-    public ResponseEntity<List<Employee>> circuitBreakerFallBack(Throwable t){
+    public ResponseEntity<?> circuitBreakerFallBack(Throwable t){
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(t.getMessage());
     }
 }
